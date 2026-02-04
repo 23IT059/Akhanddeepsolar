@@ -1,11 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/dashboard/dashboard_screen.dart';
 import 'core/theme/app_colors.dart';
+import 'services/auth_service.dart';
+import 'firebase_options.dart'; // Ensure this file exists or catch error if not
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize Firebase
+  // Note: asking user to ensure firebase_options.dart is present or manual config
+  try {
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    print("Firebase initialization failed: $e");
+    // Continue anyway to allow UI testing even if Firebase setup isn't perfect yet
+  }
+
+  // Check Session
+  final authService = AuthService();
+  final bool isLoggedIn = await authService.isLoggedIn();
   
   // Set preferred orientations
   await SystemChrome.setPreferredOrientations([
@@ -19,11 +37,12 @@ void main() async {
     statusBarIconBrightness: Brightness.dark,
   ));
 
-  runApp(const MyApp());
+  runApp(MyApp(initialRoute: isLoggedIn ? '/home' : '/login'));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoute;
+  const MyApp({super.key, required this.initialRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +80,7 @@ class MyApp extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         ),
       ),
-      initialRoute: '/login',
+      initialRoute: initialRoute,
       routes: {
         '/login': (context) => const LoginScreen(),
         '/home': (context) => const DashboardScreen(),

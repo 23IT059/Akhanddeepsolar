@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../core/theme/app_colors.dart';
+import '../../services/auth_service.dart';
 
 // Mock Models
 class Customer {
@@ -181,8 +182,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text('Logout'),
-              onTap: () {
-                 Navigator.pushReplacementNamed(context, '/login');
+              onTap: () async {
+                 await AuthService().signOut();
+                 if (context.mounted) {
+                   Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+                 }
               },
             ),
           ],

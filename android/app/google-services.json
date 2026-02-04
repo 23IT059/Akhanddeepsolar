@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "1086027206543",
+    "firebase_url": "https://akhanddeep-solar-default-rtdb.firebaseio.com",
+    "project_id": "akhanddeep-solar",
+    "storage_bucket": "akhanddeep-solar.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086027206543:android:54d0a2d89b3a69fa5b45fa",
+        "android_client_info": {
+          "package_name": "com.akhanddeep.solar_quotation_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgRXHrNk2mbbdJcfpXVsoJ3gwX9W3AnAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086027206543:android:9aced963ad3b95845b45fa",
+        "android_client_info": {
+          "package_name": "com.example.akhanddeep"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgRXHrNk2mbbdJcfpXVsoJ3gwX9W3AnAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
